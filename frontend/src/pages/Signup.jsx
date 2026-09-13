@@ -47,7 +47,11 @@ export const Signup = () => {
             
             <div>
               <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800/60 inline-block mb-2">
+<<<<<<< HEAD
                 Join Carbon Connect AI
+=======
+                Join CarbonTrace AI
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 Create Your Account

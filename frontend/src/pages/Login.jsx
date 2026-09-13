@@ -140,6 +140,7 @@ export const Login = () => {
 
               {/* Admin Security Key (Admin role only) */}
               {loginRole === 'admin' && (
+<<<<<<< HEAD
                 <div className="space-y-1.5 p-3 rounded-xl bg-amber-950/30 border border-amber-500/40">
                   <label className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
                     <Key className="w-3.5 h-3.5" /> Unique Admin Security Key
@@ -155,6 +156,62 @@ export const Login = () => {
                   <span className="text-[11px] text-amber-300/80 font-medium block">
                     Demo security key: <code className="bg-amber-900/60 px-1.5 py-0.5 rounded text-amber-200 font-mono">CC-ADMIN-2026</code>
                   </span>
+=======
+                <div className="space-y-2.5 p-3.5 rounded-xl bg-amber-950/30 border border-amber-500/40">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                      <Key className="w-3.5 h-3.5" /> Unique Admin Security Key
+                    </label>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEmail('devjaypatel9@gmail.com');
+                          setPassword('Devjay@9=');
+                          setAdminKey('rrrd-dev-hackout26');
+                        }}
+                        className="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 underline cursor-pointer"
+                        title="Auto-fill Dev Patel credentials"
+                      >
+                        Fill Dev Patel
+                      </button>
+                      <span className="text-amber-600">|</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEmail('admin@carbonlink.com');
+                          setPassword('password123');
+                          setAdminKey('rrrd-dev-hackout26');
+                        }}
+                        className="text-[11px] font-semibold text-amber-300 hover:text-amber-200 underline cursor-pointer"
+                      >
+                        Default Admin
+                      </button>
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Enter security key (rrrd-dev-hackout26)"
+                    value={adminKey}
+                    onChange={(e) => setAdminKey(e.target.value)}
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#0c1c11] border border-amber-700/50 text-white placeholder-amber-700/70 text-xs font-mono focus:outline-none focus:border-amber-400"
+                  />
+                  <div className="flex items-center justify-between text-[11px] text-amber-300/90 font-medium">
+                    <span>
+                      Security key:{' '}
+                      <button
+                        type="button"
+                        onClick={() => setAdminKey('rrrd-dev-hackout26')}
+                        className="bg-amber-900/70 hover:bg-amber-800/80 px-2 py-0.5 rounded text-amber-200 font-mono font-bold cursor-pointer border border-amber-500/40 transition-all"
+                        title="Click to auto-fill security key"
+                      >
+                        rrrd-dev-hackout26
+                      </button>
+                    </span>
+                    <span className="text-amber-400/70 text-[10px]">(Click key to auto-fill)</span>
+                  </div>
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
                 </div>
               )}
 

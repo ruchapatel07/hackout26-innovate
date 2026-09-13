@@ -10,7 +10,11 @@ export const BrandLogo = ({ onClick, className = "" }) => {
       </div>
       <div className="brand-name flex items-center gap-1 text-lg select-none">
         <b className="font-extrabold text-white !text-white text-lg leading-none">Carbon</b>
+<<<<<<< HEAD
         <span className="font-bold text-emerald-400 text-lg leading-none">Connect</span>
+=======
+        <span className="font-bold text-emerald-400 text-lg leading-none">Trace</span>
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
       </div>
     </div>
   );

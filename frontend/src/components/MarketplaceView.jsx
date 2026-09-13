@@ -7,6 +7,13 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
   const [search, setSearch] = useState('');
   const [selectedMethod, setSelectedMethod] = useState('ALL');
   const [minPurityFilter, setMinPurityFilter] = useState(90);
+<<<<<<< HEAD
+=======
+  const [minVolume, setMinVolume] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('ALL');
+  const [hasSearched, setHasSearched] = useState(false);
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
   const [selectedListing, setSelectedListing] = useState(null);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -18,10 +25,34 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
   const [newPrice, setNewPrice] = useState(65);
   const [newMethod, setNewMethod] = useState('Cement Plant');
 
+<<<<<<< HEAD
   const fetchListings = async () => {
     setLoading(true);
     try {
       const res = await fetch('/api/marketplace/listings');
+=======
+  const fetchListings = async (filters = {}) => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams();
+      if (filters.captureMethod && filters.captureMethod !== 'ALL') {
+        params.append('captureMethod', filters.captureMethod);
+      }
+      if (filters.status && filters.status !== 'ALL') {
+        params.append('status', filters.status);
+      }
+      if (filters.minPurity) {
+        params.append('minPurity', filters.minPurity);
+      }
+      if (filters.maxPrice) {
+        params.append('maxPrice', filters.maxPrice);
+      }
+
+      const queryString = params.toString();
+      const url = queryString ? `/api/marketplace/listings?${queryString}` : '/api/marketplace/listings';
+      
+      const res = await fetch(url);
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
       const data = await res.json();
       if (data.success) {
         setListings(data.listings);
@@ -29,7 +60,11 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
+<<<<<<< HEAD
       console.error(err);
+=======
+      console.error('Error fetching listings:', err);
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
     }
   };
 
@@ -60,6 +95,7 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
     }
   };
 
+<<<<<<< HEAD
   const filteredListings = listings.filter((l) => {
     const matchesSearch = l.producerName.toLowerCase().includes(search.toLowerCase()) ||
                           l.captureMethod.toLowerCase().includes(search.toLowerCase());
@@ -68,6 +104,53 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
     return matchesSearch && matchesMethod && matchesPurity;
   });
 
+=======
+  const handleSearch = () => {
+    setHasSearched(true);
+    const filters = {
+      captureMethod: selectedMethod,
+      status: selectedStatus,
+      minPurity: minPurityFilter,
+      maxPrice: maxPrice ? Number(maxPrice) : null
+    };
+    fetchListings(filters);
+  };
+
+  const handleClearFilters = () => {
+    setSearch('');
+    setSelectedMethod('ALL');
+    setMinPurityFilter(90);
+    setMinVolume('');
+    setMaxPrice('');
+    setSelectedStatus('ALL');
+    setHasSearched(false);
+    fetchListings();
+  };
+
+  const handleRefresh = () => {
+    if (hasSearched) {
+      handleSearch();
+    } else {
+      fetchListings();
+    }
+  };
+
+  // Client-side search for producer name, capture method, or location
+  let filteredListings = listings.filter((l) => {
+    if (!search.trim()) return true;
+    const searchLower = search.toLowerCase();
+    return (
+      l.producerName.toLowerCase().includes(searchLower) ||
+      l.captureMethod.toLowerCase().includes(searchLower)
+    );
+  });
+
+  // Client-side volume filter
+  if (minVolume && minVolume !== '') {
+    filteredListings = filteredListings.filter(l => l.availableCO2 >= Number(minVolume));
+  }
+
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
   return (
     <div className="space-y-8">
       
@@ -100,6 +183,7 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
       </div>
 
       {/* Filter Controls Bar */}
+<<<<<<< HEAD
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
         
         {/* Search */}
@@ -147,6 +231,121 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
           />
         </div>
 
+=======
+      <div className="space-y-4">
+        {/* Search Bar */}
+        <div className="relative">
+          <Search className="w-4 h-4 text-emerald-400 absolute left-4 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            placeholder="Search by producer, capture method or location..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full bg-dark-900 border border-emerald-700/50 rounded-xl pl-11 pr-4 py-3 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-emerald-400 transition"
+          />
+        </div>
+
+        {/* Filters Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          {/* Capture Method Filter */}
+          <div className="flex items-center gap-2 bg-dark-900 border border-slate-800 rounded-xl px-3 py-2">
+            <Filter className="w-4 h-4 text-slate-400 flex-shrink-0" />
+            <select
+              value={selectedMethod}
+              onChange={(e) => setSelectedMethod(e.target.value)}
+              className="bg-transparent text-xs text-slate-200 font-semibold w-full outline-none py-1"
+            >
+              <option value="ALL" className="bg-dark-950">All Methods</option>
+              <option value="Cement Plant" className="bg-dark-950">Cement Plant</option>
+              <option value="Steel Plant" className="bg-dark-950">Steel Plant</option>
+              <option value="Power Plant" className="bg-dark-950">Power Plant</option>
+              <option value="Direct Air Capture" className="bg-dark-950">Direct Air Capture</option>
+            </select>
+          </div>
+
+          {/* Status Filter */}
+          <div className="flex items-center gap-2 bg-dark-900 border border-slate-800 rounded-xl px-3 py-2">
+            <Filter className="w-4 h-4 text-slate-400 flex-shrink-0" />
+            <select
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+              className="bg-transparent text-xs text-slate-200 font-semibold w-full outline-none py-1"
+            >
+              <option value="ALL" className="bg-dark-950">All Status</option>
+              <option value="Available" className="bg-dark-950">Available</option>
+              <option value="Reserved" className="bg-dark-950">Reserved</option>
+              <option value="Sold" className="bg-dark-950">Sold</option>
+            </select>
+          </div>
+
+          {/* Min Volume Filter */}
+          <div className="flex items-center gap-2 bg-dark-900 border border-slate-800 rounded-xl px-3 py-2">
+            <span className="text-slate-400 text-xs font-semibold whitespace-nowrap">Min Vol:</span>
+            <input
+              type="number"
+              placeholder="Tons"
+              value={minVolume}
+              onChange={(e) => setMinVolume(e.target.value)}
+              className="bg-transparent text-xs text-white outline-none w-full placeholder-slate-500"
+            />
+          </div>
+
+          {/* Max Price Filter */}
+          <div className="flex items-center gap-2 bg-dark-900 border border-slate-800 rounded-xl px-3 py-2">
+            <span className="text-slate-400 text-xs font-semibold whitespace-nowrap">Max $:</span>
+            <input
+              type="number"
+              placeholder="Per Ton"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="bg-transparent text-xs text-white outline-none w-full placeholder-slate-500"
+            />
+          </div>
+
+          {/* Min Purity Slider */}
+          <div className="flex flex-col justify-center bg-dark-900 border border-slate-800 rounded-xl px-3 py-2">
+            <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+              <span>Purity:</span>
+              <span className="text-emerald-400">{minPurityFilter}%</span>
+            </div>
+            <input
+              type="range"
+              min="85"
+              max="99.9"
+              step="0.5"
+              value={minPurityFilter}
+              onChange={(e) => setMinPurityFilter(Number(e.target.value))}
+              className="accent-emerald-400 cursor-pointer"
+            />
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={handleSearch}
+            className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition flex items-center gap-2"
+          >
+            <Search className="w-4 h-4" />
+            <span>Search</span>
+          </button>
+
+          <button
+            onClick={handleClearFilters}
+            className="px-6 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs transition"
+          >
+            Clear Filters
+          </button>
+
+          <button
+            onClick={handleRefresh}
+            className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition flex items-center gap-2"
+          >
+            <span>↻ Refresh</span>
+          </button>
+        </div>
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
       </div>
 
       {/* Grid of Listings */}
@@ -212,7 +411,11 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
             </div>
           ))
         ) : (
+<<<<<<< HEAD
           <p className="text-xs text-slate-400 col-span-full py-12 text-center">No carbon listings match your current filters.</p>
+=======
+          <p className="text-xs text-slate-400 col-span-full py-12 text-center">No CO₂ listings match your search.</p>
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
         )}
       </div>
 

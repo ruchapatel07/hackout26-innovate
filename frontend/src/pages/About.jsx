@@ -16,7 +16,11 @@ export const About = () => {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-xs font-extrabold text-emerald-400 tracking-widest uppercase bg-emerald-950/80 px-4 py-1.5 rounded-full border border-emerald-500/30 inline-block shadow-sm">
+<<<<<<< HEAD
             ABOUT CARBON CONNECT
+=======
+            ABOUT CARBONTRACE
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
@@ -24,7 +28,11 @@ export const About = () => {
           </h1>
 
           <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed">
+<<<<<<< HEAD
             Carbon Connect is the digital marketplace connecting industrial carbon capture facilities with sustainable buyers and specialized CO<sub>2</sub> logistics providers in one transparent digital ecosystem.
+=======
+            CarbonTrace is the digital marketplace connecting industrial carbon capture facilities with sustainable buyers and specialized CO<sub>2</sub> logistics providers in one transparent digital ecosystem.
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </p>
         </div>
 

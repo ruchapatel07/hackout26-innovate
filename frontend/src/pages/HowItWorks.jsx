@@ -21,7 +21,11 @@ export const HowItWorks = () => {
           </span>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
+<<<<<<< HEAD
             How Carbon Connect Works
+=======
+            How CarbonTrace Works
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </h1>
 
           <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed">

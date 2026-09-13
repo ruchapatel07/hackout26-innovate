@@ -11,8 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+<<<<<<< HEAD
 .env
 .env.*
+=======
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +27,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+<<<<<<< HEAD
+=======
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Local development data
+localdb.json
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)

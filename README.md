@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌱 CarbonConnect
 
 CarbonConnect is an AI-powered carbon credit & ESG offset marketplace platform. It seamlessly connects carbon offset producers with corporate consumers through intelligent AI matching, price forecasting, real-time analytics, and interactive 3D visualizers.
@@ -74,10 +75,37 @@ Ensure you have the following installed on your machine:
 ```bash
 git clone https://github.com/ritamangaliya/carbon-connect.git
 cd carbon-connect
+=======
+# CarbonLink AI — Unified Full-Stack Platform
+
+Enterprise AI-powered industrial carbon capture, utilization, and circular trading ecosystem.
+
+---
+
+## 🚀 How to Run in VS Code (VS Code ma chalavva mate)
+
+### Option 1: One-Click Run in VS Code (સૌથી સરળ રીત)
+1. **VS Code** માં આ ફોલ્ડર ખોલો (`File` ➔ `Open Folder` ➔ `hackout26-innovate`).
+2. કીબોર્ડ પર **`F5`** દબાવો (અથવા `Run & Debug` ટેબ પર જઈને **"Launch CarbonLink Fullstack"** પર ક્લિક કરો).
+3. તમારા બ્રાઉઝરમાં ખોલો: **[http://localhost:5005](http://localhost:5005)**.
+
+---
+
+### Option 2: VS Code Terminal માંથી (Command Line)
+VS Code માં નવું Terminal ખોલો (`Ctrl + ~`) અને નીચેનામાંથી કોઈપણ એક કમાન્ડ ચલાવો:
+
+```bash
+# રીત A: Direct Start (સિંગલ કમાન્ડ)
+npm start
+
+# અથવા રીત B: Batch ફાઈલ રન કરો
+.\start.bat
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
 ```
 
 ---
 
+<<<<<<< HEAD
 ### **2. Setup & Run Backend**
 
 1. Navigate to the `backend` directory:
@@ -161,3 +189,44 @@ The backend relies on the following environment variables defined in `backend/.e
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+=======
+### Option 3: VS Code Tasks (`Ctrl + Shift + B`)
+1. કીબોર્ડ પર **`Ctrl + Shift + B`** દબાવો.
+2. આનાથી **"Run Fullstack Unified (Port 5005)"** ઓટોમેટિકલી શરૂ થઈ જશે!
+
+---
+
+## 🔑 Demo Login Accounts
+
+તમે આ કોઈપણ એકાઉન્ટથી સાઇન ઇન કરી શકો છો:
+
+| ભૂમિકા (Role) | ઈમેલ (Email) | પાસવર્ડ (Password) | કંપની (Company) |
+| :--- | :--- | :--- | :--- |
+| **Seller / Producer** | `producer@carbonlink.com` | `password123` | Apex Green Cement Industries |
+| **Seller / Steel** | `titan@carbonlink.com` | `password123` | Titan Steel Works Ltd |
+| **Buyer / Consumer** | `buyer@carbonlink.com` | `password123` | BioFuel Synthetics Co. |
+| **Buyer / Pharma** | `pharma@carbonlink.com` | `password123` | GreenCure Therapeutics |
+| **Administrator** | `admin@carbonlink.com` | `password123` | CarbonLink AI Global Ops |
+
+---
+
+## 🛠️ Project Structure
+
+```
+hackout26-innovate/
+├── .vscode/               # VS Code 1-Click Launch & Tasks configuration
+│   ├── launch.json
+│   └── tasks.json
+├── backend/               # Express + AWS DynamoDB API
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/seedData.js  # Rich Enterprise Seed Data
+│   └── server.js
+├── frontend/              # React + Vite + Tailwind + Three.js
+│   ├── dist/              # Production optimized bundle
+│   └── src/
+├── start.bat              # Quick 1-click launcher for Windows
+└── package.json           # Unified root runner
+```
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)

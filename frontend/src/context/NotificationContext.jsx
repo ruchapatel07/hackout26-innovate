@@ -5,7 +5,11 @@ const DEFAULT_NOTIFICATIONS = [
   {
     id: 'n-admin-1',
     title: '📢 Admin Announcement',
+<<<<<<< HEAD
     message: 'Welcome to Carbon Connect. Platform ISO 14064 certification & real-time telemetry node active.',
+=======
+    message: 'Welcome to CarbonTrace. Platform ISO 14064 certification & real-time telemetry node active.',
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
     type: 'admin',
     time: '10 mins ago',
     read: false,

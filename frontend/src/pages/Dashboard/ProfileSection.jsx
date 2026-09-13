@@ -12,7 +12,11 @@ export const ProfileSection = () => {
     <div className="content-enter">
       <div className="section-heading">
         <h2>My Profile</h2>
+<<<<<<< HEAD
         <p>View your Carbon Connect account information.</p>
+=======
+        <p>View your CarbonTrace account information.</p>
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
       </div>
 
       <div className="profile-box">
@@ -47,7 +51,11 @@ export const ProfileSection = () => {
           </div>
           <div className="profile-detail">
             <small>Platform</small>
+<<<<<<< HEAD
             <b>Carbon Connect</b>
+=======
+            <b>CarbonTrace</b>
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </div>
         </div>
       </div>

@@ -1,7 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useToast } from './ToastContext';
 
+<<<<<<< HEAD
 const ADMIN_SECURITY_KEY = "CC-ADMIN-2026";
+=======
+const ADMIN_SECURITY_KEYS = ["rrrd-dev-hackout26", "CC-ADMIN-2026"];
+const ADMIN_SECURITY_KEY = "rrrd-dev-hackout26";
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
 export const roleNames = {
   buyer: "Buyer",
@@ -70,7 +75,11 @@ export const AuthProvider = ({ children }) => {
     const cleanEmail = email.trim().toLowerCase();
 
     if (role === "admin") {
+<<<<<<< HEAD
       if (!adminKey || adminKey.trim() !== ADMIN_SECURITY_KEY) {
+=======
+      if (!adminKey || !ADMIN_SECURITY_KEYS.includes(adminKey.trim())) {
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
         showToast("Invalid Admin Security Key.", "error");
         return false;
       }

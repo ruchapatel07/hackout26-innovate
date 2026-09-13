@@ -25,7 +25,11 @@ export const ThreeLeafFlip = () => {
           transform: `rotateY(${rotationY}deg)`
         }}
       >
+<<<<<<< HEAD
         {/* Exact Carbon Connect Logo Leaf Icon */}
+=======
+        {/* Exact CarbonTrace Logo Leaf Icon */}
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
         <div className="relative flex items-center justify-center">
           <div className="absolute -inset-2 rounded-full bg-emerald-400/30 blur-md animate-pulse"></div>
           <Leaf className="w-12 h-12 text-emerald-400 fill-emerald-400/30 filter drop-shadow-[0_0_15px_rgba(52,211,153,0.9)]" />

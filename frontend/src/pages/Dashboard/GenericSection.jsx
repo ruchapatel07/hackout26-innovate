@@ -68,12 +68,24 @@ export const GenericSection = ({ section, title }) => {
   const { showToast } = useToast();
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
+=======
+  
+  // Search & Filter states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [minVolume, setMinVolume] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const [selectedMethod, setSelectedMethod] = useState('ALL');
+  const [selectedStatus, setSelectedStatus] = useState('ALL');
+  const [filteredRecords, setFilteredRecords] = useState([]);
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
   useEffect(() => {
     setLoading(true);
     fetch('/api/marketplace/listings')
       .then(res => res.json())
       .then(data => {
+<<<<<<< HEAD
         if (data.success) {
           setRecords(data.listings);
         }
@@ -82,11 +94,191 @@ export const GenericSection = ({ section, title }) => {
       .catch(() => setLoading(false));
   }, [section]);
 
+=======
+        console.log('=== API RESPONSE START ===');
+        console.log('Full response:', JSON.stringify(data, null, 2));
+        console.log('data.success:', data.success);
+        console.log('data.listings:', data.listings);
+        console.log('data.listings?.length:', data.listings?.length);
+        
+        if (data.success && data.listings && Array.isArray(data.listings)) {
+          console.log('✓ API success - listings is array');
+          console.log('Listings count:', data.listings.length);
+          if (data.listings.length > 0) {
+            console.log('First listing:', JSON.stringify(data.listings[0], null, 2));
+            console.log('Listing fields:', Object.keys(data.listings[0]));
+          }
+          console.log('Setting records state to:', data.listings.length, 'items');
+          setRecords(data.listings);
+          setFilteredRecords(data.listings);
+          console.log('✓ State updated - both records and filteredRecords set');
+        } else {
+          console.warn('✗ API response invalid');
+          console.warn('  data.success:', data.success);
+          console.warn('  data.listings:', data.listings);
+          console.warn('  Is array:', Array.isArray(data.listings));
+          setRecords([]);
+          setFilteredRecords([]);
+        }
+        setLoading(false);
+        console.log('=== API RESPONSE END ===');
+      })
+      .catch((err) => {
+        console.error('✗ ERROR fetching listings:', err);
+        setRecords([]);
+        setFilteredRecords([]);
+        setLoading(false);
+      });
+  }, [section]);
+
+  // Monitor filteredRecords changes
+  useEffect(() => {
+    console.log('WATCH: filteredRecords changed', {
+      count: filteredRecords.length,
+      records: records.length,
+      section,
+      isEmpty: filteredRecords.length === 0
+    });
+  }, [filteredRecords, records, section]);
+
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
   const item = sectionData[section] || {
     heading: title || "Dashboard",
     description: "Manage this section."
   };
 
+<<<<<<< HEAD
+=======
+  // Apply search and filters for 'search' section
+  const applySearchFilters = () => {
+    console.log('=== SEARCH FILTER START ===');
+    console.log('State:', {
+      recordsLength: records.length,
+      searchQuery,
+      minVolume,
+      maxPrice,
+      selectedMethod,
+      selectedStatus
+    });
+
+    // If no filters and no search, show all
+    if (!searchQuery.trim() && !minVolume && !maxPrice && selectedMethod === 'ALL' && selectedStatus === 'ALL') {
+      console.log('✓ No filters - showing ALL records');
+      setFilteredRecords(records);
+      console.log('TOTAL LISTINGS:', records.length);
+      showToast(`Showing all ${records.length} listing(s).`, 'info');
+      return;
+    }
+
+    let filtered = [...records];
+    console.log('Starting with', filtered.length, 'records');
+
+    // Search across producer name, capture method, and location
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      console.log('Searching for:', query);
+      const beforeSearch = filtered.length;
+      filtered = filtered.filter(r => {
+        const producerName = String(r.producerName ?? '').toLowerCase();
+        const captureMethod = String(r.captureMethod ?? '').toLowerCase();
+        const location = String(r.location ?? '').toLowerCase();
+        
+        const match = producerName.includes(query) || captureMethod.includes(query) || location.includes(query);
+        if (match) {
+          console.log('  ✓ MATCH:', r.producerName);
+        }
+        return match;
+      });
+      console.log('After search: ', filtered.length, '(was', beforeSearch, ')');
+    }
+
+    // Filter by minimum volume
+    if (minVolume && minVolume !== '') {
+      const minVol = Number(minVolume);
+      console.log('Min volume filter:', minVol);
+      const beforeVol = filtered.length;
+      filtered = filtered.filter(r => {
+        const vol = Number(r.availableCO2 ?? 0);
+        return vol >= minVol;
+      });
+      console.log('After volume: ', filtered.length, '(was', beforeVol, ')');
+    }
+
+    // Filter by maximum price
+    if (maxPrice && maxPrice !== '') {
+      const maxPr = Number(maxPrice);
+      console.log('Max price filter:', maxPr);
+      const beforePrice = filtered.length;
+      filtered = filtered.filter(r => {
+        const price = Number(r.pricePerTon ?? 0);
+        return price <= maxPr;
+      });
+      console.log('After price: ', filtered.length, '(was', beforePrice, ')');
+    }
+
+    // Filter by capture method
+    if (selectedMethod !== 'ALL') {
+      console.log('Capture method filter:', selectedMethod);
+      const beforeMethod = filtered.length;
+      filtered = filtered.filter(r => {
+        const method = String(r.captureMethod ?? '').toLowerCase();
+        return method.includes(selectedMethod.toLowerCase());
+      });
+      console.log('After method: ', filtered.length, '(was', beforeMethod, ')');
+    }
+
+    // Filter by status
+    if (selectedStatus !== 'ALL') {
+      console.log('Status filter:', selectedStatus);
+      const beforeStatus = filtered.length;
+      filtered = filtered.filter(r => {
+        const status = String(r.status ?? '').toLowerCase();
+        return status === selectedStatus.toLowerCase();
+      });
+      console.log('After status: ', filtered.length, '(was', beforeStatus, ')');
+    }
+
+    console.log('FILTERED RESULTS:', filtered.length);
+    setFilteredRecords(filtered);
+    
+    if (filtered.length === 0) {
+      showToast('No CO₂ listings match your search.', 'info');
+    } else {
+      showToast(`Found ${filtered.length} listing(s).`, 'success');
+    }
+    console.log('=== SEARCH FILTER END ===');
+  };
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setMinVolume('');
+    setMaxPrice('');
+    setSelectedMethod('ALL');
+    setSelectedStatus('ALL');
+    setFilteredRecords(records);
+    showToast('Filters cleared.', 'info');
+  };
+
+  const handleRefresh = () => {
+    setLoading(true);
+    fetch('/api/marketplace/listings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setRecords(data.listings);
+          setFilteredRecords(data.listings);
+          showToast('Listings refreshed.', 'success');
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error refreshing listings:', err);
+        showToast('Error refreshing listings.', 'error');
+        setLoading(false);
+      });
+  };
+
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
   const currentIcon = sectionIconMap[section] || <Database className="w-5 h-5 text-emerald-400" />;
 
   return (
@@ -125,9 +317,183 @@ export const GenericSection = ({ section, title }) => {
       <div className="panel">
         <div className="panel-title">
           <h3>{item.heading} Records</h3>
+<<<<<<< HEAD
           <button onClick={() => showToast('Refreshed database records.')}>Refresh</button>
         </div>
 
+=======
+          <button onClick={handleRefresh}>Refresh</button>
+        </div>
+
+        {/* Search & Filter Section (only for 'search' section) */}
+        {section === 'search' && (
+          <div style={{ marginBottom: '20px', padding: '15px', backgroundColor: '#0a1a0f', borderRadius: '8px', border: '1px solid #1a6b50' }}>
+            {/* Search Input */}
+            <div style={{ marginBottom: '12px' }}>
+              <input
+                type="text"
+                placeholder="Search by producer, capture method or location..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  backgroundColor: '#05120a',
+                  border: '1px solid #1a6b50',
+                  borderRadius: '6px',
+                  color: '#fff',
+                  fontSize: '13px',
+                  fontFamily: 'inherit'
+                }}
+                onKeyPress={(e) => e.key === 'Enter' && applySearchFilters()}
+              />
+            </div>
+
+            {/* Filters Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px', marginBottom: '12px' }}>
+              {/* Min Volume */}
+              <div>
+                <label style={{ display: 'block', fontSize: '11px', color: '#6b7c72', marginBottom: '4px', fontWeight: 'bold' }}>
+                  Min Volume (Tons)
+                </label>
+                <input
+                  type="number"
+                  placeholder="e.g., 1000"
+                  value={minVolume}
+                  onChange={(e) => setMinVolume(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    backgroundColor: '#05120a',
+                    border: '1px solid #1a6b50',
+                    borderRadius: '6px',
+                    color: '#fff',
+                    fontSize: '12px',
+                    fontFamily: 'inherit'
+                  }}
+                />
+              </div>
+
+              {/* Max Price */}
+              <div>
+                <label style={{ display: 'block', fontSize: '11px', color: '#6b7c72', marginBottom: '4px', fontWeight: 'bold' }}>
+                  Max Price ($/Ton)
+                </label>
+                <input
+                  type="number"
+                  placeholder="e.g., 50"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    backgroundColor: '#05120a',
+                    border: '1px solid #1a6b50',
+                    borderRadius: '6px',
+                    color: '#fff',
+                    fontSize: '12px',
+                    fontFamily: 'inherit'
+                  }}
+                />
+              </div>
+
+              {/* Capture Method */}
+              <div>
+                <label style={{ display: 'block', fontSize: '11px', color: '#6b7c72', marginBottom: '4px', fontWeight: 'bold' }}>
+                  Capture Method
+                </label>
+                <select
+                  value={selectedMethod}
+                  onChange={(e) => setSelectedMethod(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    backgroundColor: '#05120a',
+                    border: '1px solid #1a6b50',
+                    borderRadius: '6px',
+                    color: '#fff',
+                    fontSize: '12px',
+                    fontFamily: 'inherit'
+                  }}
+                >
+                  <option value="ALL">All Methods</option>
+                  <option value="Cement Plant">Cement Plant</option>
+                  <option value="Steel Plant">Steel Plant</option>
+                  <option value="Power Plant">Power Plant</option>
+                  <option value="Direct Air Capture">Direct Air Capture</option>
+                </select>
+              </div>
+
+              {/* Status */}
+              <div>
+                <label style={{ display: 'block', fontSize: '11px', color: '#6b7c72', marginBottom: '4px', fontWeight: 'bold' }}>
+                  Status
+                </label>
+                <select
+                  value={selectedStatus}
+                  onChange={(e) => setSelectedStatus(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    backgroundColor: '#05120a',
+                    border: '1px solid #1a6b50',
+                    borderRadius: '6px',
+                    color: '#fff',
+                    fontSize: '12px',
+                    fontFamily: 'inherit'
+                  }}
+                >
+                  <option value="ALL">All Status</option>
+                  <option value="Available">Available</option>
+                  <option value="Reserved">Reserved</option>
+                  <option value="Sold">Sold</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                onClick={applySearchFilters}
+                style={{
+                  padding: '9px 16px',
+                  backgroundColor: '#10b981',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#059669'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#10b981'}
+              >
+                🔍 Search
+              </button>
+              <button
+                onClick={clearFilters}
+                style={{
+                  padding: '9px 16px',
+                  backgroundColor: '#6b7c72',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#576b62'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#6b7c72'}
+              >
+                Clear Filters
+              </button>
+            </div>
+          </div>
+        )}
+
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
         <table className="data-table">
           <thead>
             <tr>
@@ -139,6 +505,7 @@ export const GenericSection = ({ section, title }) => {
             </tr>
           </thead>
           <tbody>
+<<<<<<< HEAD
             {loading ? (
               <tr>
                 <td colSpan="5" style={{ textAlign: 'center', padding: '20px', color: '#6b7c72' }}>
@@ -147,6 +514,27 @@ export const GenericSection = ({ section, title }) => {
               </tr>
             ) : records.length > 0 ? (
               records.map((r, i) => (
+=======
+            {(() => {
+              const displayRecords = section === 'search' ? filteredRecords : records;
+              console.log('RENDER DEBUG:', {
+                section,
+                isSearchSection: section === 'search',
+                recordsLength: records.length,
+                filteredRecordsLength: filteredRecords.length,
+                displayRecordsLength: displayRecords.length,
+                loading
+              });
+              
+              return loading ? (
+                <tr>
+                  <td colSpan="5" style={{ textAlign: 'center', padding: '20px', color: '#6b7c72' }}>
+                    Loading database records...
+                  </td>
+                </tr>
+              ) : displayRecords.length > 0 ? (
+                displayRecords.map((r, i) => (
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
                 <tr key={r.listingId || i}>
                   <td><b>{r.listingId || `#CC-${1000 + i}`}</b> - {r.producerName}</td>
                   <td>{r.captureMethod}</td>
@@ -155,6 +543,7 @@ export const GenericSection = ({ section, title }) => {
                   <td><span className="status">{r.status || 'Active'}</span></td>
                 </tr>
               ))
+<<<<<<< HEAD
             ) : (
               <tr>
                 <td colSpan="5" style={{ textAlign: 'center', padding: '24px', color: '#6b7c72' }}>
@@ -162,6 +551,16 @@ export const GenericSection = ({ section, title }) => {
                 </td>
               </tr>
             )}
+=======
+              ) : (
+                <tr>
+                  <td colSpan="5" style={{ textAlign: 'center', padding: '24px', color: '#6b7c72' }}>
+                    {section === 'search' ? 'No CO₂ listings match your search.' : 'No active records found in database for this section.'}
+                  </td>
+                </tr>
+              );
+            })()}
+>>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </tbody>
         </table>
       </div>
