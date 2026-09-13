@@ -4,11 +4,12 @@ Enterprise AI-powered industrial carbon capture, utilization, storage (CCUS), an
 
 ---
 
-## 🌐 Live Public Demo & Official Links
+## 🌐 Live Application Links
 
-- **Official Live Application**: **[https://cd9dc5427426a1.lhr.life](https://cd9dc5427426a1.lhr.life)**
-- **Public Health API**: [https://cd9dc5427426a1.lhr.life/api/health](https://cd9dc5427426a1.lhr.life/api/health)
-- **Marketplace Listings API**: [https://cd9dc5427426a1.lhr.life/api/marketplace/listings](https://cd9dc5427426a1.lhr.life/api/marketplace/listings)
+- **📱 Direct Wi-Fi Access (Mobile/Laptop)**: **[http://10.10.9.176:5005](http://10.10.9.176:5005)**
+- **🌐 Public Cloud Link**: **[https://6ec015dbfba7b0.lhr.life](https://6ec015dbfba7b0.lhr.life)**
+- **Public Health API**: [https://6ec015dbfba7b0.lhr.life/api/health](https://6ec015dbfba7b0.lhr.life/api/health)
+- **Marketplace Listings API**: [https://6ec015dbfba7b0.lhr.life/api/marketplace/listings](https://6ec015dbfba7b0.lhr.life/api/marketplace/listings)
 - **GitHub Repository**: [https://github.com/ruchapatel07/hackout26-innovate.git](https://github.com/ruchapatel07/hackout26-innovate.git)
 
 ---
