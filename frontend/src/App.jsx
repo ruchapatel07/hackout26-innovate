@@ -13,6 +13,7 @@ import { MarketplacePage } from './pages/MarketplacePage';
 import { Signup } from './pages/Signup';
 import { Login } from './pages/Login';
 import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
+import { PublicMapPage } from './pages/PublicMapPage';
 
 export const AppContent = () => {
   const { activePage } = useAuth();
@@ -35,6 +36,7 @@ export const AppContent = () => {
         {activePage === 'about' && <About />}
         {(activePage === 'how-it-works' || activePage === 'howItWorks') && <HowItWorks />}
         {activePage === 'marketplace' && <MarketplacePage />}
+        {activePage === 'map' && <PublicMapPage />}
         {activePage === 'signup' && <Signup />}
         {activePage === 'login' && <Login />}
       </main>

@@ -61,6 +61,13 @@ export const Navbar = () => {
           Marketplace
         </button>
 
+        <button
+          onClick={() => handleNavClick('map')}
+          className={`py-1 transition ${activePage === 'map' ? 'text-emerald-400 font-bold' : 'text-slate-300 hover:text-emerald-400'}`}
+        >
+          Live Map
+        </button>
+
         {/* Login Dropdown with Zero-Gap Hover Protection */}
         <div
           className="relative py-1"

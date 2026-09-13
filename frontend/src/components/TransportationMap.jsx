@@ -159,19 +159,29 @@ const haversine = (lat1, lng1, lat2, lng2) => {
 
 // ─── Icons ─────────────────────────────────────────────────────────────────
 const makeIcon = (color, emoji) => L.divIcon({
-  className: '',
-  html: `<div style="background:${color};width:34px;height:34px;border-radius:50%;border:3px solid #0a0f0a;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 14px ${color}88;">${emoji}</div>`,
+  className: 'custom-transit-icon',
+  html: `<div style="background:${color};width:34px;height:34px;border-radius:50%;border:2px solid #ffffff;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 14px ${color}aa;cursor:pointer;">${emoji}</div>`,
   iconSize: [34, 34], iconAnchor: [17, 17]
 });
 
 const MapFitter = ({ paths }) => {
   const map = useMap();
   useEffect(() => {
-    if (paths.length === 0) return;
+    if (!map) return;
+    const t = setTimeout(() => {
+      map.invalidateSize();
+    }, 200);
+
+    if (paths.length === 0) return () => clearTimeout(t);
     const allCoords = paths[0].path.map(id => [NODES[id].lat, NODES[id].lng]);
     if (allCoords.length > 1) {
-      map.fitBounds(allCoords, { padding: [40, 40], duration: 1 });
+      try {
+        map.fitBounds(allCoords, { padding: [40, 40], duration: 1 });
+      } catch (e) {
+        console.warn('Map fitBounds error', e);
+      }
     }
+    return () => clearTimeout(t);
   }, [paths, map]);
   return null;
 };
@@ -193,6 +203,10 @@ export const TransportationMap = () => {
     setSelectedPath(results[0] || null);
     setCalculated(true);
   }, [source, destination]);
+
+  useEffect(() => {
+    handleCalculate();
+  }, [handleCalculate]);
 
   // Straight-line distance
   const straightLine = source !== destination

@@ -7,6 +7,7 @@ import { ThreeGlobeCanvas } from '../components/ThreeGlobeCanvas';
 import { ThreeShieldCanvas } from '../components/ThreeShieldCanvas';
 import { MarketTicker } from '../components/MarketTicker';
 import { EsgCalculator } from '../components/EsgCalculator';
+import { InteractiveMap } from '../components/InteractiveMap';
 import {
   Building2,
   Zap,
@@ -361,122 +362,45 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* ── Live Carbon Map Teaser ──────────────────────────────────── */}
+      {/* ── Live Carbon Map Section ──────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 pb-24 relative z-10">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-bold uppercase tracking-widest mb-4">
-            🗺️ Live Network Map
+            🗺️ Live Geospatial Network
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
             Track Carbon Flows in <span className="text-emerald-400">Real Time</span>
           </h2>
           <p className="mt-3 text-slate-400 text-sm max-w-xl mx-auto">
-            See the live geospatial network of CO₂ producers and industrial consumers connected across the platform.
+            Interact directly with live industrial CO₂ capture sources, buyer facilities, and inter-state logistics corridors across India.
           </p>
         </div>
 
-        {/* Map Preview Card */}
-        <div className="relative rounded-3xl overflow-hidden border border-emerald-800/40 shadow-2xl shadow-emerald-900/40">
-          {/* Overlay gradient + CTA */}
-          <div className="absolute inset-0 z-10 pointer-events-none"
-            style={{ background: 'linear-gradient(to top, rgba(6,21,11,0.92) 0%, rgba(6,21,11,0.3) 50%, transparent 100%)' }} />
-          <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col items-center gap-4 pb-10">
-            <p className="text-white/70 text-sm">Sign in to interact with the full live map</p>
-            <div className="flex gap-3">
+        {/* Real Live Interactive Map Card */}
+        <div className="bg-[#07190e] rounded-3xl p-4 sm:p-6 border border-emerald-800/40 shadow-2xl shadow-emerald-950/50">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-4 border-b border-emerald-900/40">
+            <div>
+              <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                ACTIVE INDUSTRIAL CARBON GRID TELEMETRY
+              </span>
+              <p className="text-xs text-slate-400 mt-0.5">Click any marker to inspect verified capture volume, purity, and pricing.</p>
+            </div>
+            <div className="flex items-center gap-3">
               <button
-                onClick={() => navigatePage('login')}
-                className="px-7 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-dark-950 font-black text-sm shadow-xl shadow-emerald-500/25 hover:scale-[1.02] transition duration-200"
+                onClick={() => navigatePage('map')}
+                className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow-lg shadow-emerald-500/25 hover:scale-[1.02] transition duration-200 flex items-center gap-2"
               >
-                View Live Map →
-              </button>
-              <button
-                onClick={() => navigatePage('signup')}
-                className="px-7 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm border border-white/10 transition"
-              >
-                Create Account
+                <span>Fullscreen Live Map & Routing</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          {/* Static preview with blurred Leaflet map */}
-          <div style={{ height: 380, filter: 'blur(1.5px)', pointerEvents: 'none' }}>
-            <MapTeaser />
-          </div>
+          <InteractiveMap />
         </div>
       </section>
 
     </section>
-  );
-};
-
-/* Mini non-interactive map preview for the homepage teaser */
-const MapTeaser = () => {
-  const { MapContainer, TileLayer, CircleMarker } = window.__leafletComponents || {};
-  // Render a simple visual if leaflet isn't pre-loaded here
-  return (
-    <div style={{
-      width: '100%', height: '100%',
-      background: 'linear-gradient(135deg, #0a1f14 0%, #071b0f 40%, #0d2b18 100%)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      position: 'relative', overflow: 'hidden'
-    }}>
-      {/* Decorative grid */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        backgroundImage: 'radial-gradient(circle, rgba(16,185,129,0.15) 1px, transparent 1px)',
-        backgroundSize: '40px 40px'
-      }} />
-      {/* Decorative nodes */}
-      {[
-        { top: '25%', left: '18%', color: '#10b981', size: 18, label: 'Producer' },
-        { top: '55%', left: '38%', color: '#10b981', size: 14, label: 'Producer' },
-        { top: '35%', left: '62%', color: '#06b6d4', size: 18, label: 'Consumer' },
-        { top: '65%', left: '75%', color: '#06b6d4', size: 14, label: 'Consumer' },
-        { top: '20%', left: '80%', color: '#10b981', size: 12, label: 'Producer' },
-        { top: '70%', left: '22%', color: '#06b6d4', size: 16, label: 'Consumer' },
-      ].map((n, i) => (
-        <div key={i} style={{
-          position: 'absolute', top: n.top, left: n.left,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4
-        }}>
-          <div style={{
-            width: n.size, height: n.size, borderRadius: '50%',
-            background: n.color, border: '2px solid rgba(255,255,255,0.3)',
-            boxShadow: `0 0 ${n.size}px ${n.color}`,
-            animation: 'mapPulse 2s ease-in-out infinite',
-            animationDelay: `${i * 0.3}s`
-          }} />
-          <span style={{ color: n.color, fontSize: 9, fontWeight: 700, letterSpacing: 1, opacity: 0.8 }}>{n.label}</span>
-        </div>
-      ))}
-      {/* Animated SVG connection lines */}
-      <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.35 }}>
-        <line x1="18%" y1="25%" x2="62%" y2="35%" stroke="#10b981" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="38%" y1="55%" x2="75%" y2="65%" stroke="#10b981" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="80%" y1="20%" x2="62%" y2="35%" stroke="#06b6d4" strokeWidth="1.5" strokeDasharray="6 4" />
-        <line x1="22%" y1="70%" x2="38%" y2="55%" stroke="#06b6d4" strokeWidth="1.5" strokeDasharray="6 4" />
-      </svg>
-      {/* Legend */}
-      <div style={{
-        position: 'absolute', bottom: 16, right: 16, display: 'flex', gap: 16,
-        background: 'rgba(6,21,11,0.8)', padding: '8px 14px', borderRadius: 10,
-        border: '1px solid rgba(16,185,129,0.2)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#10b981' }} />
-          <span style={{ color: '#d1fae5', fontSize: 11, fontWeight: 600 }}>Producers</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#06b6d4' }} />
-          <span style={{ color: '#d1fae5', fontSize: 11, fontWeight: 600 }}>Consumers</span>
-        </div>
-      </div>
-      <style>{`
-        @keyframes mapPulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.3); opacity: 0.7; }
-        }
-      `}</style>
-    </div>
   );
 };
