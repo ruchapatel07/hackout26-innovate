@@ -4,10 +4,20 @@ Enterprise AI-powered industrial carbon capture, utilization, storage (CCUS), an
 
 ---
 
+## 🌐 Live Public Demo & Official Links
+
+- **Official Live Application**: **[https://cd9dc5427426a1.lhr.life](https://cd9dc5427426a1.lhr.life)**
+- **Public Health API**: [https://cd9dc5427426a1.lhr.life/api/health](https://cd9dc5427426a1.lhr.life/api/health)
+- **Marketplace Listings API**: [https://cd9dc5427426a1.lhr.life/api/marketplace/listings](https://cd9dc5427426a1.lhr.life/api/marketplace/listings)
+- **GitHub Repository**: [https://github.com/ruchapatel07/hackout26-innovate.git](https://github.com/ruchapatel07/hackout26-innovate.git)
+
+---
+
 ## ✨ Key Features
 
 - **🤖 AI Matchmaking Engine**: Intelligent pairing between industrial carbon capture producers and off-takers based on volume, chemical purity, logistics distance, and pricing.
-- **🗺️ Interactive Geospatial Carbon Network Map**: Real-time Leaflet tracking of carbon producers, consumer sinks, and transportation routes.
+- **🗺️ Live Interactive Geospatial Carbon Grid**: CartoDB Dark Matter powered Leaflet mapping of live verified emitters, consumer sinks, and animated supply corridors with real-time popup telemetry.
+- **🚛 Dijkstra Transport Route Optimizer**: Inter-state route planning across 13 industrial transit hubs calculating shortest road distance, transit duration, and fuel cost estimates.
 - **🧪 CO₂ Purity Grade Calculator**: Interactive industrial grade evaluation tool for Food Grade (99.9%+), Beverage, Chemical Synthesis, and Concrete Mineralization.
 - **🎙️ AI Voice Assistant**: Natural voice interaction assistant for queries, live stats, and marketplace navigation.
 - **📊 Real-time Analytics & Dashboard**: Multi-role dashboards for Buyers, Sellers, Transporters, and Administrators.
