@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { MapPin, Factory, ShieldCheck, Route, Search, Filter, RefreshCw } from 'lucide-react';
+import { MapPin, Factory, ShieldCheck, Route, Search, Filter, RefreshCw, Layers } from 'lucide-react';
 
 // Predefined geographic fallback coordinates for key industrial Indian hubs
 const CITY_COORDS = {
@@ -88,6 +88,7 @@ export const InteractiveMap = () => {
   const [filterType, setFilterType] = useState('all'); // 'all' | 'producers' | 'consumers'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
+  const [mapTheme, setMapTheme] = useState('dark'); // 'dark' | 'voyager'
 
   const fetchData = () => {
     setLoading(true);
@@ -252,6 +253,15 @@ export const InteractiveMap = () => {
           </div>
 
           <button
+            onClick={() => setMapTheme(prev => prev === 'dark' ? 'voyager' : 'dark')}
+            title="Toggle Map Style (Dark / Street)"
+            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700 transition flex items-center gap-1.5"
+          >
+            <Layers className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden sm:inline">{mapTheme === 'dark' ? 'Dark Map' : 'Street Map'}</span>
+          </button>
+
+          <button
             onClick={fetchData}
             title="Refresh Map Telemetry"
             className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition"
@@ -272,9 +282,13 @@ export const InteractiveMap = () => {
           style={{ background: '#051109' }}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            maxZoom={18}
+            key={mapTheme}
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            url={mapTheme === 'voyager'
+              ? "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+              : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"}
+            subdomains="abcd"
+            maxZoom={19}
           />
 
           <MapBoundsFitter points={allVisiblePoints} />
