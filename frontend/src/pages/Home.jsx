@@ -103,20 +103,12 @@ export const Home = () => {
       <section className="py-16 px-6 max-w-7xl mx-auto border-t border-emerald-900/30">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-<<<<<<< HEAD
-            <span className="text-xs font-extrabold text-emerald-400 tracking-wider uppercase block mb-3">WHY CARBON CONNECT</span>
-=======
             <span className="text-xs font-extrabold text-emerald-400 tracking-wider uppercase block mb-3">WHY CARBONTRACE</span>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               One connected platform for the complete CO₂ journey.
             </h2>
             <p className="text-sm text-slate-400 mt-4 leading-relaxed">
-<<<<<<< HEAD
-              From carbon capture and listing to bidding, transportation and final delivery, Carbon Connect keeps the complete circular ecosystem connected.
-=======
               From carbon capture and listing to bidding, transportation and final delivery, CarbonTrace keeps the complete circular ecosystem connected.
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
             </p>
           </div>
 
@@ -182,11 +174,7 @@ export const Home = () => {
             </h3>
 
             <p className="text-sm text-slate-300 leading-relaxed font-normal">
-<<<<<<< HEAD
-              Cement plants, steel smelters, and chemical refineries register their captured flue-gas CO₂ streams into Carbon Connect. Every batch is certified with precise chemical purity grades (96.0% to 99.99%).
-=======
               Cement plants, steel smelters, and chemical refineries register their captured flue-gas CO₂ streams into CarbonTrace. Every batch is certified with precise chemical purity grades (96.0% to 99.99%).
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
             </p>
 
             <div className="space-y-2.5 pt-2">
@@ -373,11 +361,6 @@ export const Home = () => {
         </div>
       </section>
 
-<<<<<<< HEAD
-    </section>
-  );
-};
-=======
       {/* ── Live Carbon Map Teaser ──────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-6 pb-24 relative z-10">
         <div className="text-center mb-10">
@@ -497,5 +480,3 @@ const MapTeaser = () => {
     </div>
   );
 };
-
->>>>>>> 90445d9 (Update Carbon Connect full stack application)

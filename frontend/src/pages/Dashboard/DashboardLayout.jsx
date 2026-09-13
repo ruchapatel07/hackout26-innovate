@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth, roleNames } from '../../context/AuthContext';
-<<<<<<< HEAD
-=======
 import { InteractiveMap } from '../../components/InteractiveMap';
 import { Co2PurityCalculator } from '../../components/Co2PurityCalculator';
 import { TransportationMap } from '../../components/TransportationMap';
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 import { useNotifications } from '../../context/NotificationContext';
 import { OverviewSection } from './OverviewSection';
 import { ProfileSection } from './ProfileSection';
@@ -32,12 +29,8 @@ import {
   Bell,
   User,
   LogOut,
-<<<<<<< HEAD
-  Menu
-=======
   Menu,
   MapPin
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 } from 'lucide-react';
 
 const iconMap = {
@@ -60,13 +53,9 @@ const iconMap = {
   adminbids: <Gavel className="w-4 h-4 flex-shrink-0" />,
   payments: <CreditCard className="w-4 h-4 flex-shrink-0" />,
   reports: <BarChart3 className="w-4 h-4 flex-shrink-0" />,
-<<<<<<< HEAD
-  security: <ShieldCheck className="w-4 h-4 flex-shrink-0" />
-=======
   security: <ShieldCheck className="w-4 h-4 flex-shrink-0" />,
   map: <MapPin className="w-4 h-4 flex-shrink-0" />,
   'purity-calc': <ShieldCheck className="w-4 h-4 flex-shrink-0" />
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 };
 
 export const DashboardLayout = () => {
@@ -86,11 +75,8 @@ export const DashboardLayout = () => {
       ['bids', 'My Bids'],
       ['orders', 'My Orders'],
       ['transport', 'Transportation'],
-<<<<<<< HEAD
-=======
       ['map', 'Live Carbon Map'],
       ['purity-calc', 'CO₂ Purity Calculator'],
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       ['messages', 'Messages']
     ],
     seller: [
@@ -101,11 +87,8 @@ export const DashboardLayout = () => {
       ['orders', 'Orders'],
       ['transport', 'Transportation'],
       ['earnings', 'Earnings'],
-<<<<<<< HEAD
-=======
       ['map', 'Live Carbon Map'],
       ['purity-calc', 'CO₂ Purity Calculator'],
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       ['messages', 'Messages']
     ],
     transporter: [
@@ -116,11 +99,8 @@ export const DashboardLayout = () => {
       ['tracking', 'Route Tracking'],
       ['earnings', 'Earnings'],
       ['vehicle', 'My Vehicle'],
-<<<<<<< HEAD
-=======
       ['map', 'Live Carbon Map'],
       ['purity-calc', 'CO₂ Purity Calculator'],
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       ['messages', 'Messages']
     ],
     admin: [
@@ -132,11 +112,8 @@ export const DashboardLayout = () => {
       ['transport', 'Transportation'],
       ['payments', 'Payments'],
       ['reports', 'Reports & Analytics'],
-<<<<<<< HEAD
-=======
       ['map', 'Live Carbon Map'],
       ['purity-calc', 'CO₂ Purity Calculator'],
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       ['security', 'Security']
     ]
   };
@@ -149,13 +126,9 @@ export const DashboardLayout = () => {
     trips: "My Trips", delivery: "Active Delivery", tracking: "Route Tracking",
     vehicle: "My Vehicle", users: "Manage Users", carbon: "CO₂ Listings",
     adminbids: "Bidding Management", payments: "Payments",
-<<<<<<< HEAD
-    reports: "Reports & Analytics", security: "Security"
-=======
     reports: "Reports & Analytics", security: "Security",
     map: "Live Carbon Map",
     'purity-calc': "CO₂ Purity Calculator"
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
   };
 
   const roleMenu = menus[currentUser.role] || menus.buyer;
@@ -172,8 +145,6 @@ export const DashboardLayout = () => {
       return <ProfileSection />;
     } else if (dashboardSection === 'notifications') {
       return <NotificationsSection />;
-<<<<<<< HEAD
-=======
     } else if (dashboardSection === 'map') {
       return (
         <div className="content-enter p-4">
@@ -192,7 +163,6 @@ export const DashboardLayout = () => {
           <TransportationMap />
         </div>
       );
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
     } else {
       return <GenericSection section={dashboardSection} title={titles[dashboardSection]} />;
     }
@@ -263,11 +233,7 @@ export const DashboardLayout = () => {
             </button>
 
             <div>
-<<<<<<< HEAD
-              <small>CARBON CONNECT</small>
-=======
               <small>CARBONTRACE</small>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
               <h1>{titles[dashboardSection] || 'Dashboard'}</h1>
             </div>
           </div>

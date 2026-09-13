@@ -13,11 +13,7 @@ export const Footer = () => {
         {/* 5-Column Grid Structure */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           
-<<<<<<< HEAD
-          {/* Column 1 (md:col-span-2): Carbon Connect Logo, Tagline & Badges */}
-=======
           {/* Column 1 (md:col-span-2): CarbonTrace Logo, Tagline & Badges */}
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
           <div className="md:col-span-2 space-y-4">
             <BrandLogo onClick={() => navigatePage('home')} />
             
@@ -126,19 +122,11 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-emerald-900/50 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-emerald-100/60">
-<<<<<<< HEAD
-          <p>© 2026 Carbon Connect AI. All rights reserved.</p>
-
-          <div className="flex items-center gap-2 text-emerald-400 font-bold tracking-wider uppercase">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"></span>
-            <span>CARBON CONNECT NETWORK</span>
-=======
           <p>© 2026 CarbonTrace AI. All rights reserved.</p>
 
           <div className="flex items-center gap-2 text-emerald-400 font-bold tracking-wider uppercase">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"></span>
             <span>CARBONTRACE NETWORK</span>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </div>
         </div>
 

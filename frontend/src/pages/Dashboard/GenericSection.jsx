@@ -68,9 +68,6 @@ export const GenericSection = ({ section, title }) => {
   const { showToast } = useToast();
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
-<<<<<<< HEAD
-=======
-  
   // Search & Filter states
   const [searchQuery, setSearchQuery] = useState('');
   const [minVolume, setMinVolume] = useState('');
@@ -78,77 +75,34 @@ export const GenericSection = ({ section, title }) => {
   const [selectedMethod, setSelectedMethod] = useState('ALL');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
   const [filteredRecords, setFilteredRecords] = useState([]);
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
   useEffect(() => {
     setLoading(true);
     fetch('/api/marketplace/listings')
       .then(res => res.json())
       .then(data => {
-<<<<<<< HEAD
-        if (data.success) {
-          setRecords(data.listings);
-        }
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [section]);
-
-=======
-        console.log('=== API RESPONSE START ===');
-        console.log('Full response:', JSON.stringify(data, null, 2));
-        console.log('data.success:', data.success);
-        console.log('data.listings:', data.listings);
-        console.log('data.listings?.length:', data.listings?.length);
-        
         if (data.success && data.listings && Array.isArray(data.listings)) {
-          console.log('✓ API success - listings is array');
-          console.log('Listings count:', data.listings.length);
-          if (data.listings.length > 0) {
-            console.log('First listing:', JSON.stringify(data.listings[0], null, 2));
-            console.log('Listing fields:', Object.keys(data.listings[0]));
-          }
-          console.log('Setting records state to:', data.listings.length, 'items');
           setRecords(data.listings);
           setFilteredRecords(data.listings);
-          console.log('✓ State updated - both records and filteredRecords set');
         } else {
-          console.warn('✗ API response invalid');
-          console.warn('  data.success:', data.success);
-          console.warn('  data.listings:', data.listings);
-          console.warn('  Is array:', Array.isArray(data.listings));
           setRecords([]);
           setFilteredRecords([]);
         }
         setLoading(false);
-        console.log('=== API RESPONSE END ===');
       })
       .catch((err) => {
-        console.error('✗ ERROR fetching listings:', err);
+        console.error('Error fetching listings:', err);
         setRecords([]);
         setFilteredRecords([]);
         setLoading(false);
       });
   }, [section]);
-
-  // Monitor filteredRecords changes
-  useEffect(() => {
-    console.log('WATCH: filteredRecords changed', {
-      count: filteredRecords.length,
-      records: records.length,
-      section,
-      isEmpty: filteredRecords.length === 0
-    });
-  }, [filteredRecords, records, section]);
-
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
   const item = sectionData[section] || {
     heading: title || "Dashboard",
     description: "Manage this section."
   };
 
-<<<<<<< HEAD
-=======
+
   // Apply search and filters for 'search' section
   const applySearchFilters = () => {
     console.log('=== SEARCH FILTER START ===');
@@ -278,7 +232,6 @@ export const GenericSection = ({ section, title }) => {
       });
   };
 
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
   const currentIcon = sectionIconMap[section] || <Database className="w-5 h-5 text-emerald-400" />;
 
   return (
@@ -317,11 +270,6 @@ export const GenericSection = ({ section, title }) => {
       <div className="panel">
         <div className="panel-title">
           <h3>{item.heading} Records</h3>
-<<<<<<< HEAD
-          <button onClick={() => showToast('Refreshed database records.')}>Refresh</button>
-        </div>
-
-=======
           <button onClick={handleRefresh}>Refresh</button>
         </div>
 
@@ -493,7 +441,6 @@ export const GenericSection = ({ section, title }) => {
           </div>
         )}
 
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
         <table className="data-table">
           <thead>
             <tr>
@@ -505,27 +452,8 @@ export const GenericSection = ({ section, title }) => {
             </tr>
           </thead>
           <tbody>
-<<<<<<< HEAD
-            {loading ? (
-              <tr>
-                <td colSpan="5" style={{ textAlign: 'center', padding: '20px', color: '#6b7c72' }}>
-                  Loading database records...
-                </td>
-              </tr>
-            ) : records.length > 0 ? (
-              records.map((r, i) => (
-=======
             {(() => {
               const displayRecords = section === 'search' ? filteredRecords : records;
-              console.log('RENDER DEBUG:', {
-                section,
-                isSearchSection: section === 'search',
-                recordsLength: records.length,
-                filteredRecordsLength: filteredRecords.length,
-                displayRecordsLength: displayRecords.length,
-                loading
-              });
-              
               return loading ? (
                 <tr>
                   <td colSpan="5" style={{ textAlign: 'center', padding: '20px', color: '#6b7c72' }}>
@@ -534,7 +462,6 @@ export const GenericSection = ({ section, title }) => {
                 </tr>
               ) : displayRecords.length > 0 ? (
                 displayRecords.map((r, i) => (
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
                 <tr key={r.listingId || i}>
                   <td><b>{r.listingId || `#CC-${1000 + i}`}</b> - {r.producerName}</td>
                   <td>{r.captureMethod}</td>
@@ -543,15 +470,6 @@ export const GenericSection = ({ section, title }) => {
                   <td><span className="status">{r.status || 'Active'}</span></td>
                 </tr>
               ))
-<<<<<<< HEAD
-            ) : (
-              <tr>
-                <td colSpan="5" style={{ textAlign: 'center', padding: '24px', color: '#6b7c72' }}>
-                  No active records found in database for this section.
-                </td>
-              </tr>
-            )}
-=======
               ) : (
                 <tr>
                   <td colSpan="5" style={{ textAlign: 'center', padding: '24px', color: '#6b7c72' }}>
@@ -560,7 +478,6 @@ export const GenericSection = ({ section, title }) => {
                 </tr>
               );
             })()}
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
           </tbody>
         </table>
       </div>

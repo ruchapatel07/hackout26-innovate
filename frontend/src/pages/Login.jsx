@@ -140,23 +140,6 @@ export const Login = () => {
 
               {/* Admin Security Key (Admin role only) */}
               {loginRole === 'admin' && (
-<<<<<<< HEAD
-                <div className="space-y-1.5 p-3 rounded-xl bg-amber-950/30 border border-amber-500/40">
-                  <label className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                    <Key className="w-3.5 h-3.5" /> Unique Admin Security Key
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Enter security key"
-                    value={adminKey}
-                    onChange={(e) => setAdminKey(e.target.value)}
-                    required
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#0c1c11] border border-amber-700/50 text-white placeholder-amber-700 text-xs focus:outline-none focus:border-amber-400"
-                  />
-                  <span className="text-[11px] text-amber-300/80 font-medium block">
-                    Demo security key: <code className="bg-amber-900/60 px-1.5 py-0.5 rounded text-amber-200 font-mono">CC-ADMIN-2026</code>
-                  </span>
-=======
                 <div className="space-y-2.5 p-3.5 rounded-xl bg-amber-950/30 border border-amber-500/40">
                   <div className="flex items-center justify-between">
                     <label className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
@@ -211,7 +194,6 @@ export const Login = () => {
                     </span>
                     <span className="text-amber-400/70 text-[10px]">(Click key to auto-fill)</span>
                   </div>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
                 </div>
               )}
 

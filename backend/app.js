@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/authRoutes.js';
 import producerRoutes from './routes/producerRoutes.js';
@@ -14,6 +17,10 @@ import aiRoutes from './routes/aiRoutes.js';
 import { errorHandler } from './middleware/error.js';
 import { seedInitialData } from './utils/seedData.js';
 import { createAwsDynamoDBTables } from './utils/createAwsTables.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendDist = path.join(__dirname, '../frontend/dist');
 
 const app = express();
 
@@ -42,8 +49,8 @@ app.use('/api', limiter);
   }
 })();
 
-// Health Check
-app.get('/api/health', (req, res) => {
+// Health Check (both /health and /api/health for flexible cloud platforms)
+app.get(['/health', '/api/health'], (req, res) => {
   res.json({
     status: 'OK',
     service: 'CarbonLink AI Backend',
@@ -61,6 +68,15 @@ app.use('/api/match', matchRoutes);
 app.use('/api/logistics', logisticsRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/ai', aiRoutes);
+
+// Static frontend serving & SPA wildcard for unified single-endpoint deployment
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+}
 
 // Global Error Middleware
 app.use(errorHandler);

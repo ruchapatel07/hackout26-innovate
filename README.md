@@ -1,232 +1,88 @@
-<<<<<<< HEAD
-# 🌱 CarbonConnect
+# 🌱 CarbonTrace (CarbonLink AI) — Industrial CO₂ Marketplace & Network
 
-CarbonConnect is an AI-powered carbon credit & ESG offset marketplace platform. It seamlessly connects carbon offset producers with corporate consumers through intelligent AI matching, price forecasting, real-time analytics, and interactive 3D visualizers.
+Enterprise AI-powered industrial carbon capture, utilization, storage (CCUS), and circular CO₂ trading ecosystem. Seamlessly connects carbon capture facilities with sustainable industrial buyers, specialized logistics providers, and regulatory certification.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- **🤖 AI Matchmaking Engine**: Intelligent matchmaking between carbon credit producers and enterprise buyers based on volume, pricing, and project type.
-- **📊 Price Predictor**: AI-driven carbon price forecasting and ESG impact analysis.
-- **📈 Interactive Analytics & Maps**: Real-time tracking of carbon credits, market ticker, and geographical project mapping.
-- **🌐 Dynamic 3D Visualizations**: Powered by Three.js and Framer Motion for interactive data representation.
-- **🔐 Secure Authentication & Role Management**: Multi-role support for Producers, Consumers, Logistics Providers, and Admins.
+- **🤖 AI Matchmaking Engine**: Intelligent pairing between industrial carbon capture producers and off-takers based on volume, chemical purity, logistics distance, and pricing.
+- **🗺️ Interactive Geospatial Carbon Network Map**: Real-time Leaflet tracking of carbon producers, consumer sinks, and transportation routes.
+- **🧪 CO₂ Purity Grade Calculator**: Interactive industrial grade evaluation tool for Food Grade (99.9%+), Beverage, Chemical Synthesis, and Concrete Mineralization.
+- **🎙️ AI Voice Assistant**: Natural voice interaction assistant for queries, live stats, and marketplace navigation.
+- **📊 Real-time Analytics & Dashboard**: Multi-role dashboards for Buyers, Sellers, Transporters, and Administrators.
+- **🔐 Secure Authentication**: JWT authentication with Bcrypt password hashing and role-based permissions.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### **Frontend**
-- **Framework**: React 18 + Vite
-- **Styling**: TailwindCSS + PostCSS
-- **3D Graphics & Animations**: Three.js, Framer Motion
-- **Maps & Charts**: Leaflet, React-Leaflet, Recharts
-- **Icons**: Lucide React
-
-### **Backend**
-- **Runtime**: Node.js + Express
-- **Database**: AWS DynamoDB (`@aws-sdk/client-dynamodb`)
-- **Authentication**: JSON Web Tokens (JWT) + Bcrypt
-- **Security**: Helmet, CORS, Express Rate Limiting
+- **Frontend**: React 18, Vite, TailwindCSS, Three.js, Framer Motion, Leaflet, Lucide React
+- **Backend**: Node.js, Express, AWS DynamoDB (`@aws-sdk/client-dynamodb`), Helmet, CORS
+- **Database**: AWS DynamoDB Cloud (ap-south-1) with automatic local fallback mode
 
 ---
 
-## 📁 Project Structure
+## 🚀 Quick Start (Local Development)
 
-```text
-carbon-connect/
-├── backend/                  # Node.js + Express REST API
-│   ├── config/               # DB & environment configuration
-│   ├── controllers/          # Business logic handlers
-│   ├── middleware/           # Auth & validation middleware
-│   ├── models/               # DynamoDB table definitions
-│   ├── routes/               # API endpoint definitions
-│   ├── utils/                # AI algorithms, seed script & helpers
-│   ├── server.js             # Express server entry point
-│   └── .env.example          # Sample environment variables
-│
-├── frontend/                 # React + Vite Frontend UI
-│   ├── public/               # Static assets & icons
-│   ├── src/
-│   │   ├── components/       # Reusable UI components & 3D canvases
-│   │   ├── context/          # React Context (Auth, Toast, Notifications)
-│   │   ├── pages/            # Page layouts & Dashboard sections
-│   │   ├── App.jsx           # Root Application component
-│   │   └── main.jsx          # Entry point
-│   ├── tailwind.config.js    # Tailwind CSS configuration
-│   └── vite.config.js        # Vite configuration
-│
-└── README.md                 # Project documentation
-```
-
----
-
-## 🚀 Getting Started
-
-### **Prerequisites**
-Ensure you have the following installed on your machine:
-- **Node.js** (v18.x or higher)
-- **npm** (v9.x or higher)
-
----
-
-### **1. Clone the Repository**
-```bash
-git clone https://github.com/ritamangaliya/carbon-connect.git
-cd carbon-connect
-=======
-# CarbonLink AI — Unified Full-Stack Platform
-
-Enterprise AI-powered industrial carbon capture, utilization, and circular trading ecosystem.
-
----
-
-## 🚀 How to Run in VS Code (VS Code ma chalavva mate)
-
-### Option 1: One-Click Run in VS Code (સૌથી સરળ રીત)
-1. **VS Code** માં આ ફોલ્ડર ખોલો (`File` ➔ `Open Folder` ➔ `hackout26-innovate`).
-2. કીબોર્ડ પર **`F5`** દબાવો (અથવા `Run & Debug` ટેબ પર જઈને **"Launch CarbonLink Fullstack"** પર ક્લિક કરો).
-3. તમારા બ્રાઉઝરમાં ખોલો: **[http://localhost:5005](http://localhost:5005)**.
-
----
-
-### Option 2: VS Code Terminal માંથી (Command Line)
-VS Code માં નવું Terminal ખોલો (`Ctrl + ~`) અને નીચેનામાંથી કોઈપણ એક કમાન્ડ ચલાવો:
-
-```bash
-# રીત A: Direct Start (સિંગલ કમાન્ડ)
-npm start
-
-# અથવા રીત B: Batch ફાઈલ રન કરો
+### Option 1: One-Click Windows Launcher
+Double-click `start.bat` in the project root:
+```cmd
 .\start.bat
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 ```
+This automatically boots:
+- Backend on **[http://localhost:5005](http://localhost:5005)**
+- Frontend on **[http://localhost:5173](http://localhost:5173)**
 
----
-
-<<<<<<< HEAD
-### **2. Setup & Run Backend**
-
-1. Navigate to the `backend` directory:
-   ```bash
-   cd backend
-   ```
-
-2. Install backend dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Create your `.env` file:
-   ```bash
-   cp .env.example .env
-   ```
-
-4. *(Optional)* Seed initial sample data into the database:
-   ```bash
-   npm run seed
-   ```
-
-5. Start the backend server:
-   ```bash
-   npm start
-   ```
-   The backend API server will run on `http://localhost:5005`.
-
----
-
-### **3. Setup & Run Frontend**
-
-1. Open a new terminal tab and navigate to the `frontend` directory:
-   ```bash
-   cd frontend
-   ```
-
-2. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-   The application will be accessible at `http://localhost:5173`.
-
----
-
-## ⚙️ Environment Variables
-
-The backend relies on the following environment variables defined in `backend/.env`:
-
-| Variable | Default Value | Description |
-| :--- | :--- | :--- |
-| `PORT` | `5005` | Backend server port |
-| `NODE_ENV` | `development` | Application environment |
-| `JWT_SECRET` | *(custom string)* | Secret key for signing JWT tokens |
-| `JWT_EXPIRES_IN` | `7d` | Expiration time for JWT tokens |
-| `AWS_REGION` | `us-east-1` | AWS Region for DynamoDB |
-| `AWS_ACCESS_KEY_ID` | *(your_key)* | AWS Access Key ID |
-| `AWS_SECRET_ACCESS_KEY` | *(your_secret)* | AWS Secret Access Key |
-| `DYNAMODB_PREFIX` | `CarbonLink_` | Prefix for DynamoDB tables |
-
----
-
-## 📜 Available Scripts
-
-### **Backend (`/backend`)**
-- `npm start` - Starts the Express server (`node server.js`).
-- `npm run seed` - Populates the database with initial sample data.
-
-### **Frontend (`/frontend`)**
-- `npm run dev` - Launches the Vite development server with HMR.
-- `npm run build` - Builds the application for production deployment.
-- `npm run preview` - Locally previews the production build.
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-=======
-### Option 3: VS Code Tasks (`Ctrl + Shift + B`)
-1. કીબોર્ડ પર **`Ctrl + Shift + B`** દબાવો.
-2. આનાથી **"Run Fullstack Unified (Port 5005)"** ઓટોમેટિકલી શરૂ થઈ જશે!
+### Option 2: Unified Node.js Server
+```bash
+npm run build
+npm start
+```
+Your full web application and REST API endpoints will be accessible together at **[http://localhost:5005](http://localhost:5005)**.
 
 ---
 
 ## 🔑 Demo Login Accounts
 
-તમે આ કોઈપણ એકાઉન્ટથી સાઇન ઇન કરી શકો છો:
-
-| ભૂમિકા (Role) | ઈમેલ (Email) | પાસવર્ડ (Password) | કંપની (Company) |
+| Role | Email | Password | Admin Key |
 | :--- | :--- | :--- | :--- |
-| **Seller / Producer** | `producer@carbonlink.com` | `password123` | Apex Green Cement Industries |
-| **Seller / Steel** | `titan@carbonlink.com` | `password123` | Titan Steel Works Ltd |
-| **Buyer / Consumer** | `buyer@carbonlink.com` | `password123` | BioFuel Synthetics Co. |
-| **Buyer / Pharma** | `pharma@carbonlink.com` | `password123` | GreenCure Therapeutics |
-| **Administrator** | `admin@carbonlink.com` | `password123` | CarbonLink AI Global Ops |
+| **Seller / Producer** | `producer@carbonlink.com` | `password123` | — |
+| **Seller / Steel Smelter** | `titan@carbonlink.com` | `password123` | — |
+| **Buyer / BioFuel** | `buyer@carbonlink.com` | `password123` | — |
+| **Transporter** | `transporter@carbonlink.com` | `password123` | — |
+| **Administrator** | `devjaypatel9@gmail.com` | `Devjay@9=` | `rrrd-dev-hackout26` |
+| **Admin (Default)** | `admin@carbonlink.com` | `password123` | `rrrd-dev-hackout26` |
 
 ---
 
-## 🛠️ Project Structure
+## 🌐 Production Deployment
 
+### 1. Render (Recommended for 1-Click Single Service)
+A `render.yaml` blueprint is included in the root directory.
+- **Build Command**: `npm run deploy:build`
+- **Start Command**: `npm start`
+- **Health Check Endpoint**: `/api/health`
+
+### 2. Vercel (Frontend UI)
+A `vercel.json` is included in `hackout26-innovate/frontend/vercel.json` with SPA routing rules.
+
+### 3. Docker Container
+Build and run the entire unified stack in one container:
+```bash
+docker build -t carbontrace .
+docker run -p 5005:5005 carbontrace
 ```
-hackout26-innovate/
-├── .vscode/               # VS Code 1-Click Launch & Tasks configuration
-│   ├── launch.json
-│   └── tasks.json
-├── backend/               # Express + AWS DynamoDB API
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── utils/seedData.js  # Rich Enterprise Seed Data
-│   └── server.js
-├── frontend/              # React + Vite + Tailwind + Three.js
-│   ├── dist/              # Production optimized bundle
-│   └── src/
-├── start.bat              # Quick 1-click launcher for Windows
-└── package.json           # Unified root runner
-```
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
+
+---
+
+## 📡 Core API Endpoints
+
+- `GET /api/health` - Service health status
+- `POST /api/auth/login` - User authentication
+- `POST /api/auth/register` - User registration
+- `GET /api/auth/me` - Authenticated session validation
+- `GET /api/marketplace/listings` - Verified CO₂ supply listings with filters
+- `POST /api/match/evaluate` - AI algorithm match score calculation
+- `GET /api/admin/dashboard` - Platform statistics and analytics
+- `POST /api/admin/seed` - Reseed demo enterprise records

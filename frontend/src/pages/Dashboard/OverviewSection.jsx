@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
-import { useAuth, roleNames } from '../../context/AuthContext';
-import { useToast } from '../../context/ToastContext';
-import { TrendingUp, Recycle, Gavel, Package, Truck } from 'lucide-react';
-=======
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth, roleNames } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { TrendingUp, Recycle, Gavel, Package, Truck, RefreshCw, Database, AlertCircle } from 'lucide-react';
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
 export const OverviewSection = () => {
   const { currentUser, setDashboardSection } = useAuth();
@@ -17,33 +10,6 @@ export const OverviewSection = () => {
   const [dashData, setDashData] = useState(null);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
-<<<<<<< HEAD
-
-  useEffect(() => {
-    setLoading(true);
-
-    // Fetch live dashboard metrics
-    fetch('/api/admin/dashboard')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          setDashData(data.stats);
-        }
-      })
-      .catch(console.error);
-
-    // Fetch live marketplace listings for active table
-    fetch('/api/marketplace/listings')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          setListings(data.listings);
-        }
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-=======
   const [reseeding, setReseeding] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
 
@@ -95,15 +61,11 @@ export const OverviewSection = () => {
       setReseeding(false);
     }
   };
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
   if (!currentUser) return null;
 
   const s = dashData || {};
-<<<<<<< HEAD
-=======
   const dataIsEmpty = !dashData || (s.totalUsers === 0 && s.totalCO2Available === 0 && s.totalTransactions === 0);
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
   let stats = [];
   if (currentUser.role === 'buyer' || currentUser.role === 'consumer') {
@@ -145,12 +107,6 @@ export const OverviewSection = () => {
 
   return (
     <div className="content-enter">
-<<<<<<< HEAD
-      <div className="welcome-banner">
-        <small>{(roleNames[currentUser.role] || currentUser.role).toUpperCase()} DASHBOARD</small>
-        <h2>Welcome back, {currentUser.name}!</h2>
-        <p>Manage your Carbon Connect activities with real-time marketplace data.</p>
-=======
       {/* Data Warning Banner */}
       {dataIsEmpty && !loading && (
         <div style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 14, padding: '12px 18px', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -169,7 +125,6 @@ export const OverviewSection = () => {
         <small>{(roleNames[currentUser.role] || currentUser.role).toUpperCase()} DASHBOARD</small>
         <h2>Welcome back, {currentUser.name}!</h2>
         <p>Manage your CarbonTrace activities with real-time marketplace data.</p>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       </div>
 
       <div className="stat-grid">

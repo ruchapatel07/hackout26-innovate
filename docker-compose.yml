@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  carbontrace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5005:5005"
+    environment:
+      - PORT=5005
+      - NODE_ENV=production
+      - JWT_SECRET=jay
+      - JWT_EXPIRES_IN=7d
+      - AWS_REGION=ap-south-1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - DYNAMODB_PREFIX=CarbonLink_
+    restart: unless-stopped

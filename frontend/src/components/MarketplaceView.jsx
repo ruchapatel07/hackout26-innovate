@@ -7,13 +7,10 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
   const [search, setSearch] = useState('');
   const [selectedMethod, setSelectedMethod] = useState('ALL');
   const [minPurityFilter, setMinPurityFilter] = useState(90);
-<<<<<<< HEAD
-=======
   const [minVolume, setMinVolume] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('ALL');
   const [hasSearched, setHasSearched] = useState(false);
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 
   const [selectedListing, setSelectedListing] = useState(null);
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -25,12 +22,6 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
   const [newPrice, setNewPrice] = useState(65);
   const [newMethod, setNewMethod] = useState('Cement Plant');
 
-<<<<<<< HEAD
-  const fetchListings = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/marketplace/listings');
-=======
   const fetchListings = async (filters = {}) => {
     setLoading(true);
     try {
@@ -52,7 +43,6 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
       const url = queryString ? `/api/marketplace/listings?${queryString}` : '/api/marketplace/listings';
       
       const res = await fetch(url);
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       const data = await res.json();
       if (data.success) {
         setListings(data.listings);
@@ -60,11 +50,7 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-<<<<<<< HEAD
-      console.error(err);
-=======
       console.error('Error fetching listings:', err);
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
     }
   };
 
@@ -95,16 +81,6 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
     }
   };
 
-<<<<<<< HEAD
-  const filteredListings = listings.filter((l) => {
-    const matchesSearch = l.producerName.toLowerCase().includes(search.toLowerCase()) ||
-                          l.captureMethod.toLowerCase().includes(search.toLowerCase());
-    const matchesMethod = selectedMethod === 'ALL' || l.captureMethod.toLowerCase().includes(selectedMethod.toLowerCase());
-    const matchesPurity = l.purity >= minPurityFilter;
-    return matchesSearch && matchesMethod && matchesPurity;
-  });
-
-=======
   const handleSearch = () => {
     setHasSearched(true);
     const filters = {
@@ -149,8 +125,6 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
   if (minVolume && minVolume !== '') {
     filteredListings = filteredListings.filter(l => l.availableCO2 >= Number(minVolume));
   }
-
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
   return (
     <div className="space-y-8">
       
@@ -183,55 +157,6 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
       </div>
 
       {/* Filter Controls Bar */}
-<<<<<<< HEAD
-      <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
-        
-        {/* Search */}
-        <div className="sm:col-span-5 relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
-          <input
-            type="text"
-            placeholder="Search by producer name or capture method..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-dark-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:border-brand-green outline-none"
-          />
-        </div>
-
-        {/* Capture Method Selector */}
-        <div className="sm:col-span-4 flex items-center gap-2 bg-dark-900 border border-slate-800 rounded-xl px-3 py-1">
-          <Filter className="w-4 h-4 text-slate-400 flex-shrink-0" />
-          <select
-            value={selectedMethod}
-            onChange={(e) => setSelectedMethod(e.target.value)}
-            className="bg-transparent text-xs text-slate-200 font-semibold w-full outline-none py-1.5"
-          >
-            <option value="ALL" className="bg-dark-950">All Capture Methods</option>
-            <option value="Cement Plant" className="bg-dark-950">Cement Plant</option>
-            <option value="Steel Plant" className="bg-dark-950">Steel Plant</option>
-            <option value="Power Plant" className="bg-dark-950">Power Plant</option>
-            <option value="Direct Air Capture" className="bg-dark-950">Direct Air Capture</option>
-          </select>
-        </div>
-
-        {/* Min Purity Slider */}
-        <div className="sm:col-span-3 flex flex-col justify-center bg-dark-900 border border-slate-800 rounded-xl px-3.5 py-2">
-          <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
-            <span>Min Purity:</span>
-            <span className="text-brand-green">{minPurityFilter}%</span>
-          </div>
-          <input
-            type="range"
-            min="85"
-            max="99.9"
-            step="0.5"
-            value={minPurityFilter}
-            onChange={(e) => setMinPurityFilter(Number(e.target.value))}
-            className="accent-brand-green cursor-pointer"
-          />
-        </div>
-
-=======
       <div className="space-y-4">
         {/* Search Bar */}
         <div className="relative">
@@ -345,7 +270,6 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
             <span>↻ Refresh</span>
           </button>
         </div>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       </div>
 
       {/* Grid of Listings */}
@@ -411,11 +335,7 @@ export const MarketplaceView = ({ openAiMatchmaker, user }) => {
             </div>
           ))
         ) : (
-<<<<<<< HEAD
-          <p className="text-xs text-slate-400 col-span-full py-12 text-center">No carbon listings match your current filters.</p>
-=======
           <p className="text-xs text-slate-400 col-span-full py-12 text-center">No CO₂ listings match your search.</p>
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
         )}
       </div>
 

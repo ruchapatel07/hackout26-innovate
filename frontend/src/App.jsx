@@ -5,10 +5,7 @@ import { NotificationProvider } from './context/NotificationContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ToastContainer } from './components/ToastContainer';
-<<<<<<< HEAD
-=======
 import { VoiceAssistant } from './components/VoiceAssistant';
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { HowItWorks } from './pages/HowItWorks';
@@ -25,10 +22,7 @@ export const AppContent = () => {
       <>
         <DashboardLayout />
         <ToastContainer />
-<<<<<<< HEAD
-=======
         <VoiceAssistant />
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
       </>
     );
   }
@@ -46,10 +40,7 @@ export const AppContent = () => {
       </main>
       <Footer />
       <ToastContainer />
-<<<<<<< HEAD
-=======
       <VoiceAssistant />
->>>>>>> 90445d9 (Update Carbon Connect full stack application)
     </>
   );
 };
